@@ -27,8 +27,8 @@ app.use(httpLogger);
 
 // Compute unique allowed origins from env and local development
 const rawOrigins = [
-  env.CLIENT_URL,
-  ...(env.ALLOWED_ORIGINS ? env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()) : []),
+  env.CLIENT_URL ? env.CLIENT_URL.replace(/\/$/, '') : null,
+  ...(env.ALLOWED_ORIGINS ? env.ALLOWED_ORIGINS.split(',').map((o) => o.trim().replace(/\/$/, '')) : []),
   'http://localhost:5173',
   'http://127.0.0.1:5173',
 ].filter(Boolean);
