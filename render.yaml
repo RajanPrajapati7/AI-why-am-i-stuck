@@ -18,9 +18,15 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        sync: false
+        fromService:
+          type: web
+          name: ai-why-am-i-stuck-frontend
+          envVarKey: RENDER_EXTERNAL_URL
       - key: ALLOWED_ORIGINS
-        sync: false
+        fromService:
+          type: web
+          name: ai-why-am-i-stuck-frontend
+          envVarKey: RENDER_EXTERNAL_URL
       - key: COOKIE_SAME_SITE
         value: none
       - key: GEMINI_API_KEY
@@ -41,4 +47,7 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
+        fromService:
+          type: web
+          name: ai-why-am-i-stuck-backend
+          envVarKey: RENDER_EXTERNAL_URL
