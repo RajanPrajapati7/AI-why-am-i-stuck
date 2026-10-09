@@ -4,6 +4,9 @@
   "description": "Cognitive Debugging and Meta-Learning Backend for AI Why Am I Stuck Assistant",
   "main": "src/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",

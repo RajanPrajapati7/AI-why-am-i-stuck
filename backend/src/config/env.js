@@ -43,6 +43,16 @@ try {
         '[Security Error] In production, JWT_SECRET must be a cryptographically strong secret of at least 16 characters.'
       );
     }
+
+    if (
+      !process.env.MONGO_URI ||
+      parsedEnv.MONGO_URI.includes('127.0.0.1') ||
+      parsedEnv.MONGO_URI.includes('localhost')
+    ) {
+      console.warn(
+        '\n[CONFIG WARNING] MONGO_URI is unset or pointing to localhost in production. Please set MONGO_URI in your Render environment variables to a cloud MongoDB instance (e.g. MongoDB Atlas).\n'
+      );
+    }
   }
 } catch (error) {
   if (error instanceof z.ZodError) {

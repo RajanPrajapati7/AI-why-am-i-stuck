@@ -18,15 +18,9 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        fromService:
-          type: web
-          name: ai-why-am-i-stuck-frontend
-          envVarKey: RENDER_EXTERNAL_URL
+        value: https://ai-why-am-i-stuck-frontend.onrender.com
       - key: ALLOWED_ORIGINS
-        fromService:
-          type: web
-          name: ai-why-am-i-stuck-frontend
-          envVarKey: RENDER_EXTERNAL_URL
+        value: https://ai-why-am-i-stuck-frontend.onrender.com
       - key: COOKIE_SAME_SITE
         value: none
       - key: GEMINI_API_KEY

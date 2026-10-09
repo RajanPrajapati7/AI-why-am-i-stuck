@@ -62,9 +62,8 @@ app.use('/api', apiLimiter);
 app.get('/api/health', (req, res) => {
   const isDbConnected = mongoose.connection.readyState === 1;
   const status = isDbConnected ? 'healthy' : 'degraded';
-  const statusCode = isDbConnected ? 200 : 503;
 
-  res.status(statusCode).json({
+  res.status(200).json({
     status,
     timestamp: new Date().toISOString(),
     service: 'AI Why Am I Stuck Assistant API',
@@ -85,7 +84,7 @@ app.use(errorHandler);
 
 const PORT = env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   logger.info(
     { port: PORT, environment: env.NODE_ENV },
     `AI Why Am I Stuck Assistant API listening on port ${PORT} [${env.NODE_ENV}]`
